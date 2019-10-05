@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+    <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
+    <PathMap>$(RepoRoot)=.</PathMap>
+    <Copyright>Copyright (c) masa-suzu</Copyright>
+    <Product>Sophomoric.NET</Product>
+    <Author>https://github.com/masa-suzu/dotnet-deps</Author>
+  </PropertyGroup>
+  
+</Project>
