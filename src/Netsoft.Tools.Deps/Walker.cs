@@ -8,7 +8,10 @@ namespace Netsoft.Tools.Deps
 {
     public class SolutionWalker
     {
-        public void Walk(Solution solution, IProgress<Project> nodeReporter, IProgress<(Project, Project)> edgeReporter)
+        public void Walk(Solution solution, 
+            IProgress<Project> nodeReporter, 
+            IProgress<(Project, Project)> profectRefercenceReporter,
+            IProgress<(Project, MetadataReference)> metadataReferenceReporter)
         {
             var graph = solution.GetProjectDependencyGraph();
             var projects = solution.ProjectIds.Select(id => solution.GetProject(id))
@@ -20,13 +23,17 @@ namespace Netsoft.Tools.Deps
             foreach (var project in projects)
             {
                 nodeReporter.Report(project);
+                foreach (var metadata in project.MetadataReferences)
+                {
+                    metadataReferenceReporter.Report((project, metadata));
+                }
             }
 
             foreach (var dependency in dependencies)
             {
                 foreach (var to in dependency.DependsOn)
                 {
-                    edgeReporter.Report((dependency.From, solution.GetProject(to)));
+                    profectRefercenceReporter.Report((dependency.From, solution.GetProject(to)));
                 }
             }
         }

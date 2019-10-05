@@ -63,5 +63,35 @@ namespace Netsoft.Tests.Tools.Deps
                 }
             }
         }
+        [Fact]
+        public void ShouldReportMetadataReferenceWithNode()
+        {
+            using (var workspace = new AdhocWorkspace())
+            {
+                var p1 = ProjectInfo.Create(ProjectId.CreateNewId(), VersionStamp.Create(), "A", "A", "C#");
+
+                using (var m = new MemoryStream())
+                {
+                    using (var sw = new StreamWriter(m))
+                    {
+                        using (var reporter = new DotReporter(sw))
+                        {
+                            var a = workspace.AddProject(p1);
+                            var b = a.AddMetadataReference(MetadataReference.CreateFromFile("Netsoft.Tests.Tools.Deps.dll"));
+                            reporter.Report(a);
+                            reporter.Report((b, b.MetadataReferences.First()));
+                        }
+                        sw.Flush();
+                    }
+
+                    Assert.Equal(@"digraph G {
+    ""A""
+    ""Netsoft.Tests.Tools.Deps.dll""
+    ""A"" -> ""Netsoft.Tests.Tools.Deps.dll""
+}
+", System.Text.Encoding.UTF8.GetString(m.ToArray()));
+                }
+            }
+        }
     }
 }

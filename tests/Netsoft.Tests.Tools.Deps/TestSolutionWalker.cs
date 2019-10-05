@@ -24,7 +24,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                walker.Walk(sln, got, got);
+                walker.Walk(sln, got, got, got);
 
                 Xunit.Assert.Equal(new string[] { "project1", "project2" }, got.Projects.Select(p => p.Name).ToArray());
             }
@@ -51,7 +51,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                walker.Walk(sln, got, got);
+                walker.Walk(sln, got, got,got);
 
                 Xunit.Assert.Equal(
                     new string[][] {
@@ -67,7 +67,7 @@ namespace Netsoft.Tests.Tools.Deps
         }
     }
 
-    internal class Progress : IProgress<Project>, IProgress<(Project,Project)>
+    internal class Progress : IProgress<Project>, IProgress<(Project,Project)>, IProgress<(Project, MetadataReference)>
     {
         public List<Project> Projects { get; private set; }
         public List<(Project, Project)> DepensOn { get; private set; }
@@ -85,6 +85,10 @@ namespace Netsoft.Tests.Tools.Deps
         public void Report((Project, Project) value)
         {
             DepensOn.Add(value);
+        }
+
+        public void Report((Project, MetadataReference) value)
+        {
         }
     }
 }

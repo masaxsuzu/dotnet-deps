@@ -55,7 +55,7 @@ namespace Netsoft.Tools.Deps
 
                 using (var progress = new DotReporter(Console.Out))
                 {
-                    walker.Walk(solution, progress, progress);
+                    walker.Walk(solution, progress, progress,progress);
                 }
             }
 
