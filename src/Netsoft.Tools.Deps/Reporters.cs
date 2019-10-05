@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Netsoft.Tools.Deps
 {
-    public class GraphVizReporter : IProgress<Project>, IProgress<(Project, Project)>, IDisposable
+    public class DotReporter : IProgress<Project>, IProgress<(Project, Project)>, IDisposable
     {
         private readonly TextWriter _writer;
-        public GraphVizReporter(TextWriter writer)
+        public DotReporter(TextWriter writer)
         {
             _writer = writer;
             _writer.WriteLine("digraph G {");

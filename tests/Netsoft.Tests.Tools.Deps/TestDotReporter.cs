@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Netsoft.Tests.Tools.Deps
 {
-    public class TestGraphVizReporter
+    public class TestDotReporter
     {
         [Fact]
         public void ShouldCloseGraph()
@@ -17,7 +17,7 @@ namespace Netsoft.Tests.Tools.Deps
             {
                 using (var sw = new StreamWriter(m))
                 {
-                    using (var reporter = new GraphVizReporter(sw))
+                    using (var reporter = new DotReporter(sw))
                     {
 
                     }
@@ -42,7 +42,7 @@ namespace Netsoft.Tests.Tools.Deps
                 {
                     using (var sw = new StreamWriter(m))
                     {
-                        using (var reporter = new GraphVizReporter(sw))
+                        using (var reporter = new DotReporter(sw))
                         {
                             var a = workspace.AddProject(p1);
                             var b = workspace.AddProject(p2);

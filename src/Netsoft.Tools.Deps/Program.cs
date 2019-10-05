@@ -53,7 +53,7 @@ namespace Netsoft.Tools.Deps
 
                 var walker = new SolutionWalker();
 
-                using (var progress = new GraphVizReporter(Console.Out))
+                using (var progress = new DotReporter(Console.Out))
                 {
                     walker.Walk(solution, progress, progress);
                 }
