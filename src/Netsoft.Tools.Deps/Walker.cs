@@ -8,8 +8,8 @@ namespace Netsoft.Tools.Deps
 {
     public class SolutionWalker
     {
-        public void Walk(Solution solution, 
-            IProgress<Project> nodeReporter, 
+        public void Walk(Solution solution,
+            IProgress<Project> nodeReporter,
             IProgress<(Project, Project)> profectRefercenceReporter,
             IProgress<(Project, MetadataReference)> metadataReferenceReporter)
         {
