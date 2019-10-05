@@ -1,6 +1,6 @@
 # dotnet-deps
 
-dotnet-deps resolves dependency graph from a visual studio solution file and show it as dot format.
+dotnet-deps resolves dependency graph from a visual studio solution file and outputs it as dot format.
 
 ![deps](./docs/deps.png "dependency graph")
 ```
