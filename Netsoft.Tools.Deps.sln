@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netsoft.Tools.Deps", "src\Netsoft.Tools.Deps\Netsoft.Tools.Deps.csproj", "{A6C719A4-5E13-40FA-B06A-54818381D44B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netsoft.Tests.Tools.Deps", "tests\Netsoft.Tests.Tools.Deps\Netsoft.Tests.Tools.Deps.csproj", "{B4E723D0-8D19-443A-BAF1-CD8BD5B23A86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netsoft.Tests.Tools.Deps", "tests\Netsoft.Tests.Tools.Deps\Netsoft.Tests.Tools.Deps.csproj", "{B4E723D0-8D19-443A-BAF1-CD8BD5B23A86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2D59579F-8E7F-4D57-922C-0033C2A57FD7}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

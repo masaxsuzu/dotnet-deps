@@ -5,7 +5,7 @@
     <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
     <PathMap>$(RepoRoot)=.</PathMap>
     <Copyright>Copyright (c) masa-suzu</Copyright>
-    <Product>Sophomoric.NET</Product>
+    <Product>dotnet-deps</Product>
     <Author>https://github.com/masa-suzu/dotnet-deps</Author>
   </PropertyGroup>
   

@@ -22,18 +22,6 @@ namespace Netsoft.Tools.Deps
 
             if (parsed.Tag == ParserResultType.NotParsed)
             {
-                var notParsed = parsed as NotParsed<Arguments>;
-                
-                foreach (var error in notParsed.Errors)
-                {
-                    if (error.Tag == ErrorType.HelpRequestedError ||
-                        error.Tag == ErrorType.VersionRequestedError)
-                    {
-                        continue;
-                    }
-                    Console.Error.WriteLine(error);
-                }
-
                 return 1;
             }
 
