@@ -9,6 +9,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-deps</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <AssemblyName>dotnet-deps</AssemblyName>
 
   </PropertyGroup>
   
