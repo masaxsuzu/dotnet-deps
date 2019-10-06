@@ -24,7 +24,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                walker.Walk(sln, got, got, got);
+                walker.Walk(sln, got, got);
 
                 Xunit.Assert.Equal(new string[] { "project1", "project2" }, got.Projects.Select(p => p.Name).ToArray());
             }
@@ -51,7 +51,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                walker.Walk(sln, got, got,got);
+                walker.Walk(sln, got, got);
 
                 Xunit.Assert.Equal(
                     new string[][] {

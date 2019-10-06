@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Netsoft.Tools.Deps
 {
-    public class DotReporter : IDisposable,IProgress<Project>, IProgress<(Project, Project)>,IProgress<(Project,MetadataReference)>
+    public class DotReporter : IDisposable,IProgress<Project>, IProgress<(Project, Project)>
     {
         private readonly TextWriter _writer;
         public DotReporter(TextWriter writer)
@@ -23,13 +23,6 @@ namespace Netsoft.Tools.Deps
         public void Report((Project, Project) value)
         {
             _writer.WriteLine($"    \"{value.Item1.Name}\" -> \"{value.Item2.Name}\"");
-        }
-
-        public void Report((Project, MetadataReference) value)
-        {
-            string display = Path.GetFileName(value.Item2.Display);
-            _writer.WriteLine($"    \"{display}\"");
-            _writer.WriteLine($"    \"{value.Item1.Name}\" -> \"{display}\"");
         }
 
         #region IDisposable Support

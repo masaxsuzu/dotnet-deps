@@ -51,5 +51,11 @@
       <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Docs.Types\Docs.Types.csproj">
+      <Project>{7caf4d58-9c18-4471-a23e-e46209ed82e4}</Project>
+      <Name>Docs.Types</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

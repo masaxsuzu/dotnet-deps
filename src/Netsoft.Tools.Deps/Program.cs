@@ -35,27 +35,19 @@ namespace Netsoft.Tools.Deps
                 return 2;
             }
 
-            // Attempt to set the version of MSBuild.
-            var visualStudioInstances = MSBuildLocator.QueryVisualStudioInstances().ToArray();
+            MSBuildLocator.RegisterDefaults();
 
-            if (visualStudioInstances.Length < 0)
-            {
-                Console.Error.WriteLine($"Not found Visual Studio instance.");
-                return 3;
-            }
-
-            var instance = visualStudioInstances[0];
-
-            MSBuildLocator.RegisterInstance(instance);
             using (var workspace = MSBuildWorkspace.Create())
             {
+#if DEBUG
+                //System.Diagnostics.Debugger.Launch();
+#endif
                 var solution = await workspace.OpenSolutionAsync(solutionPath);
-
                 var walker = new SolutionWalker();
 
                 using (var progress = new DotReporter(Console.Out))
                 {
-                    walker.Walk(solution, progress, progress,progress);
+                    walker.Walk(solution, progress, progress);
                 }
             }
 

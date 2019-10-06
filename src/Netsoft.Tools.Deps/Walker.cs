@@ -10,8 +10,7 @@ namespace Netsoft.Tools.Deps
     {
         public void Walk(Solution solution,
             IProgress<Project> nodeReporter,
-            IProgress<(Project, Project)> profectRefercenceReporter,
-            IProgress<(Project, MetadataReference)> metadataReferenceReporter)
+            IProgress<(Project, Project)> profectRefercenceReporter)
         {
             var graph = solution.GetProjectDependencyGraph();
             var projects = solution.ProjectIds.Select(id => solution.GetProject(id))
@@ -23,10 +22,6 @@ namespace Netsoft.Tools.Deps
             foreach (var project in projects)
             {
                 nodeReporter.Report(project);
-                foreach (var metadata in project.MetadataReferences)
-                {
-                    metadataReferenceReporter.Report((project, metadata));
-                }
             }
 
             foreach (var dependency in dependencies)
