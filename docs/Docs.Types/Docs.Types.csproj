@@ -36,5 +36,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Docs.Interfaces\Docs.Interfaces.csproj">
+      <Project>{07de367b-1d18-426d-ad1c-853dc30c5797}</Project>
+      <Name>Docs.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
