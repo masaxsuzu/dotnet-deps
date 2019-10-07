@@ -6,7 +6,10 @@ using System.Text;
 
 namespace Netsoft.Tools.Deps
 {
-    public class DotReporter : IDisposable,IProgress<Project>, IProgress<(Project, Project)>
+    public class DotReporter : IDisposable,
+        IProgress<Project>, 
+        IProgress<(Project, Project)>,
+        IProgress<(Project, object)>
     {
         private readonly TextWriter _writer;
         public DotReporter(TextWriter writer)
@@ -23,6 +26,12 @@ namespace Netsoft.Tools.Deps
         public void Report((Project, Project) value)
         {
             _writer.WriteLine($"    \"{value.Item1.Name}\" -> \"{value.Item2.Name}\"");
+        }
+
+        public void Report((Project, object) value)
+        {
+            _writer.WriteLine($"    \"{value.Item2}\"");
+            _writer.WriteLine($"    \"{value.Item1.Name}\" -> \"{value.Item2}\"");
         }
 
         #region IDisposable Support

@@ -12,6 +12,10 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.CodeAnalysis.Text;
 using CommandLine;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
+
 namespace Netsoft.Tools.Deps
 {
     class Program
@@ -42,16 +46,41 @@ namespace Netsoft.Tools.Deps
 #if DEBUG
                 //System.Diagnostics.Debugger.Launch();
 #endif
-                var solution = await workspace.OpenSolutionAsync(solutionPath);
-                var walker = new SolutionWalker();
-
-                using (var progress = new DotReporter(Console.Out))
+                using (var serviceScope = HostHttpClient())
                 {
-                    walker.Walk(solution, progress, progress);
+                    var services = serviceScope.Services;
+                    var client = services.GetRequiredService<IHttpClientFactory>();
+                    try
+                    {
+                        await Walk(solutionPath, workspace, client);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Error.WriteLine(ex.Message);
+                        return 3;
+                    }
                 }
             }
 
             return 0;
+        }
+
+        public static async Task Walk(string solutionPath, MSBuildWorkspace workspace, IHttpClientFactory client)
+        {
+            var solution = await workspace.OpenSolutionAsync(solutionPath);
+
+            using (var progress = new DotReporter(Console.Out))
+            {
+                var walker = new SolutionWalker();
+                await walker.WalkAsync(solution, client, progress, progress, progress);
+            }
+        }
+
+        private static IHost HostHttpClient()
+        {
+            var builder = new HostBuilder()
+                .ConfigureServices((hostContext, services) => services.AddHttpClient()).UseConsoleLifetime();
+            return builder.Build();
         }
     }
 }
