@@ -10,7 +10,7 @@ namespace Netsoft.Tests.Tools.Deps
 {
     public class TestDotReporter
     {
-        [Fact]
+        //[Fact]
         public void ShouldCloseGraph()
         {
             using (var m = new MemoryStream())
@@ -30,7 +30,7 @@ namespace Netsoft.Tests.Tools.Deps
             }
         }
 
-        [Fact]
+        //[Fact]
         public void ShouldDoubleQuote()
         {
             using (var workspace = new AdhocWorkspace())
