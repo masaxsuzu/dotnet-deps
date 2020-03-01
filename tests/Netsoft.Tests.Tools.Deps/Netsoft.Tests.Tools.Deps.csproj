@@ -2,10 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AssemblyName>dotnet-deps</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackAsTool>true</PackAsTool>
-    <ToolCommandName>dotnet-deps</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
