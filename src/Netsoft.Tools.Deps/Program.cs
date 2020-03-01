@@ -72,7 +72,7 @@ namespace Netsoft.Tools.Deps
             using (var progress = new DotReporter(Console.Out))
             {
                 var walker = new SolutionWalker();
-                await walker.WalkAsync(solution, progress, progress);
+                walker.Walk(solution, progress, progress);
             }
         }
 

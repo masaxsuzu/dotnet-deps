@@ -13,7 +13,7 @@ namespace Netsoft.Tools.Deps
 {
     public class SolutionWalker
     {
-        public async Task WalkAsync(Solution solution,
+        public void Walk(Solution solution,
             IProgress<Project> nodeReporter,
             IProgress<(Project, Project)> profectRefercenceReporter)
         {

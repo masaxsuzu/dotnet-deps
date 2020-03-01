@@ -43,7 +43,7 @@ namespace Netsoft.Tests.Tools.Deps
         }
 
         [Fact]
-        public async System.Threading.Tasks.Task ShouldReportAllProjectsAsync()
+        public void  ShouldReportAllProjectsAsync()
         {
             using (var workspace = MSBuildWorkspace.Create())
             {
@@ -51,7 +51,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                await walker.WalkAsync(sln, got, got);
+                walker.Walk(sln, got, got);
 
                 Xunit.Assert.Equal(
                     new string[] { "Docs.Api", "Docs.Interfaces", "Docs.Client" },
@@ -59,7 +59,7 @@ namespace Netsoft.Tests.Tools.Deps
             }
         }
         [Fact]
-        public async System.Threading.Tasks.Task ShouldReportAllProjectDependenciesAsync()
+        public void  ShouldReportAllProjectDependenciesAsync()
         {
             using (var workspace = MSBuildWorkspace.Create())
             {
@@ -68,7 +68,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                await walker.WalkAsync(sln, got, got);
+                walker.Walk(sln, got, got);
 
                 Xunit.Assert.Equal(
                     new string[][] {
