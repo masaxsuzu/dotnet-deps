@@ -51,7 +51,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                await walker.WalkAsync(sln,_fixture.ClientFactory , got, got, got);
+                await walker.WalkAsync(sln, got, got);
 
                 Xunit.Assert.Equal(
                     new string[] { "Docs.Api", "Docs.Interfaces", "Docs.Client" },
@@ -68,7 +68,7 @@ namespace Netsoft.Tests.Tools.Deps
                 var walker = new SolutionWalker();
 
                 var got = new Progress();
-                await walker.WalkAsync(sln, _fixture.ClientFactory, got, got, got);
+                await walker.WalkAsync(sln, got, got);
 
                 Xunit.Assert.Equal(
                     new string[][] {
@@ -79,46 +79,6 @@ namespace Netsoft.Tests.Tools.Deps
                     .Select(p => new string[] { p.Item1.Name, p.Item2.Name })
                     .OrderBy(k => string.Join('+', k))
                     .ToArray());
-            }
-        }
-
-        [Fact]
-        public async System.Threading.Tasks.Task ShouldReportAllMetadataDependenciesAsync()
-        {
-            using (var workspace = MSBuildWorkspace.Create())
-            {
-                var sln = workspace.OpenSolutionAsync("..\\..\\..\\..\\..\\Docs.sln").Result;
-
-                var walker = new SolutionWalker();
-
-                var got = new Progress();
-                await walker.WalkAsync(sln, _fixture.ClientFactory, got, got, got);
-
-                string[][] metadata = got.Metadata
-                    .Select(p => new string[] { p.Item1.Name, p.Item2.ToString() })
-                    .OrderBy(k => string.Join('+', k))
-                    .ToArray();
-                Xunit.Assert.Equal(
-                    new string[][] {
-                        new string[] { "Docs.Api", "Prism" },
-                        new string[] { "Docs.Api", "System.ValueTuple" },
-                        new string[] { "Docs.Client", "Microsoft.CSharp" },
-                        new string[] { "Docs.Client", "System" },
-                        new string[] { "Docs.Client", "System.Core" },
-                        new string[] { "Docs.Client", "System.Data" },
-                        new string[] { "Docs.Client", "System.Data.DataSetExtensions" },
-                        new string[] { "Docs.Client", "System.Net.Http" },
-                        new string[] { "Docs.Client", "System.Xml" },
-                        new string[] { "Docs.Client", "System.Xml.Linq" },
-                        new string[] { "Docs.Interfaces", "Microsoft.CSharp" },
-                        new string[] { "Docs.Interfaces", "System" },
-                        new string[] { "Docs.Interfaces", "System.Core" },
-                        new string[] { "Docs.Interfaces", "System.Data" },
-                        new string[] { "Docs.Interfaces", "System.Data.DataSetExtensions" },
-                        new string[] { "Docs.Interfaces", "System.Net.Http" },
-                        new string[] { "Docs.Interfaces", "System.Xml" },
-                        new string[] { "Docs.Interfaces", "System.Xml.Linq" },
-                    }, metadata);
             }
         }
     }

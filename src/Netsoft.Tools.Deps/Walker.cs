@@ -14,10 +14,8 @@ namespace Netsoft.Tools.Deps
     public class SolutionWalker
     {
         public async Task WalkAsync(Solution solution,
-            IHttpClientFactory client,
             IProgress<Project> nodeReporter,
-            IProgress<(Project, Project)> profectRefercenceReporter,
-            IProgress<(Project,object)> metadataReferenceReporter)
+            IProgress<(Project, Project)> profectRefercenceReporter)
         {
             var graph = solution.GetProjectDependencyGraph();
             var projects = solution.ProjectIds.Select(id => solution.GetProject(id))
@@ -26,22 +24,9 @@ namespace Netsoft.Tools.Deps
                 .Select(p => new { From = p, DependsOn = graph.GetProjectsThatThisProjectDirectlyDependsOn(p.Id) })
                 .ToArray();
 
-            var parsingMetadataferences = projects
-                .Select(p => PostMetadataReferences(p,client));
-
-            var metadataReferences = await Task.WhenAll(parsingMetadataferences.ToList());
-
             foreach (var project in projects)
             {
                 nodeReporter.Report(project);
-            }
-
-            foreach (var metadataReference in metadataReferences)
-            {
-                foreach (string item in metadataReference.Item2)
-                {
-                    metadataReferenceReporter.Report((metadataReference.Item1, item));
-                }
             }
 
             foreach (var dependency in projectReferences)

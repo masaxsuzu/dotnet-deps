@@ -52,7 +52,7 @@ namespace Netsoft.Tools.Deps
                     var client = services.GetRequiredService<IHttpClientFactory>();
                     try
                     {
-                        await Walk(solutionPath, workspace, client);
+                        await Walk(solutionPath, workspace);
                     }
                     catch (Exception ex)
                     {
@@ -65,14 +65,14 @@ namespace Netsoft.Tools.Deps
             return 0;
         }
 
-        public static async Task Walk(string solutionPath, MSBuildWorkspace workspace, IHttpClientFactory client)
+        public static async Task Walk(string solutionPath, MSBuildWorkspace workspace)
         {
             var solution = await workspace.OpenSolutionAsync(solutionPath);
 
             using (var progress = new DotReporter(Console.Out))
             {
                 var walker = new SolutionWalker();
-                await walker.WalkAsync(solution, client, progress, progress, progress);
+                await walker.WalkAsync(solution, progress, progress);
             }
         }
 

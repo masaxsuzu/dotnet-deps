@@ -26,7 +26,7 @@ namespace Netsoft.Tests.Tools.Deps
 
                 Assert.Equal(@"digraph G {
 }
-", System.Text.Encoding.UTF8.GetString(m.ToArray()));
+", System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
             }
         }
 
@@ -59,7 +59,7 @@ namespace Netsoft.Tests.Tools.Deps
     ""B.C""
     ""A"" -> ""B.C""
 }
-", System.Text.Encoding.UTF8.GetString(m.ToArray()));
+", System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
                 }
             }
         }
