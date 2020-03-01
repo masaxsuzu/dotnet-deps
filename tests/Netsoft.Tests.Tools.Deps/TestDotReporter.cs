@@ -10,7 +10,7 @@ namespace Netsoft.Tests.Tools.Deps
 {
     public class TestDotReporter
     {
-        //[Fact]
+        [Fact]
         public void ShouldCloseGraph()
         {
             using (var m = new MemoryStream())
@@ -26,11 +26,11 @@ namespace Netsoft.Tests.Tools.Deps
 
                 Assert.Equal(@"digraph G {
 }
-", System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
+".Replace("\r\n", "\n"), System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
             }
         }
 
-        //[Fact]
+        [Fact]
         public void ShouldDoubleQuote()
         {
             using (var workspace = new AdhocWorkspace())
@@ -59,7 +59,7 @@ namespace Netsoft.Tests.Tools.Deps
     ""B.C""
     ""A"" -> ""B.C""
 }
-", System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
+".Replace("\r\n", "\n"), System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
                 }
             }
         }
