@@ -4,12 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>Latest</LangVersion>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
 
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-deps</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <AssemblyName>dotnet-deps</AssemblyName>
 
   </PropertyGroup>
   
