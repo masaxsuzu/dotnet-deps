@@ -18,7 +18,8 @@ namespace Netsoft.Tools.Deps
             IProgress<(Project, Project)> profectRefercenceReporter)
         {
             var graph = solution.GetProjectDependencyGraph();
-            var projects = solution.ProjectIds.Select(id => solution.GetProject(id))
+            var projects = graph.GetTopologicallySortedProjects()
+                .Select(id => solution.GetProject(id))
                 .ToArray();
             var projectReferences = projects
                 .Select(p => new { From = p, DependsOn = graph.GetProjectsThatThisProjectDirectlyDependsOn(p.Id) })

@@ -54,7 +54,7 @@ namespace Netsoft.Tests.Tools.Deps
                 walker.Walk(sln, got, got);
 
                 Xunit.Assert.Equal(
-                    new string[] { "Docs.Api", "Docs.Interfaces", "Docs.Client" },
+                    new string[] { "Docs.Interfaces", "Docs.Api", "Docs.Client" },
                     got.Projects.Select(p => p.Name).ToArray());
             }
         }
@@ -73,6 +73,7 @@ namespace Netsoft.Tests.Tools.Deps
                 Xunit.Assert.Equal(
                     new string[][] {
                         new string[] { "Docs.Api", "Docs.Interfaces" },
+                        new string[] { "Docs.Client","Docs.Api" },
                         new string[] { "Docs.Client","Docs.Interfaces" },
                     },
                     got.DepensOn
