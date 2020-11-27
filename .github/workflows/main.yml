@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Nuget
+      uses: Nuget/setup-nuget@v1
     - name: Setup .NET 5.0
       uses: actions/setup-dotnet@v1
       with:
@@ -28,6 +30,5 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.1.x
-
     - name: Build with dotnet
       run: dotnet msbuild .\build\tasks.proj /t:pack /p:configuration=Release
