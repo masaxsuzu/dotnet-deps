@@ -9,7 +9,8 @@ jobs:
   build:
 
     runs-on: [windows-latest]
-
+    - name: Setup Nuget
+      uses: Nuget/setup-nuget@v1
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET 5.0
@@ -24,8 +25,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.1.x
-    - name: Setup Nuget
-      uses: warrenbuckley/Setup-Nuget@v1
     - name: Build with dotnet
       run: dotnet msbuild .\build\tasks.proj /t:pack /p:configuration=Release
     - name: Add GPR Source
