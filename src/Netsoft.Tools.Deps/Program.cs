@@ -46,19 +46,14 @@ namespace Netsoft.Tools.Deps
 #if DEBUG
                 //System.Diagnostics.Debugger.Launch();
 #endif
-                using (var serviceScope = HostHttpClient())
+                try
                 {
-                    var services = serviceScope.Services;
-                    var client = services.GetRequiredService<IHttpClientFactory>();
-                    try
-                    {
-                        await Walk(solutionPath, workspace);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.Error.WriteLine(ex.Message);
-                        return 3;
-                    }
+                    await Walk(solutionPath, workspace);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message);
+                    return 3;
                 }
             }
 
@@ -74,13 +69,6 @@ namespace Netsoft.Tools.Deps
                 var walker = new SolutionWalker();
                 walker.Walk(solution, progress, progress);
             }
-        }
-
-        private static IHost HostHttpClient()
-        {
-            var builder = new HostBuilder()
-                .ConfigureServices((hostContext, services) => services.AddHttpClient()).UseConsoleLifetime();
-            return builder.Build();
         }
     }
 }
