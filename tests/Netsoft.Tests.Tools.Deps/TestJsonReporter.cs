@@ -55,8 +55,8 @@ namespace Netsoft.Tests.Tools.Deps
                     }
 
                     Assert.Equal(@"[
-  { ""Name"": ""A"", ""AssemblyName"": ""A.dll"", ""FilePathFromSolutionDir"": ""src\\A\\A.csproj"" },
-  { ""Name"": ""B"", ""AssemblyName"": ""Y.dll"", ""FilePathFromSolutionDir"": ""src\\B\\B.csproj"" }
+  { ""Name"": ""A"", ""Order"": 0, ""AssemblyName"": ""A.dll"", ""FilePathFromSolutionDir"": ""src\\A\\A.csproj"" },
+  { ""Name"": ""B"", ""Order"": 1, ""AssemblyName"": ""Y.dll"", ""FilePathFromSolutionDir"": ""src\\B\\B.csproj"" }
 ]
 ".Replace("\r\n", "\n"), System.Text.Encoding.UTF8.GetString(m.ToArray()).Replace("\r\n","\n"));
                 }

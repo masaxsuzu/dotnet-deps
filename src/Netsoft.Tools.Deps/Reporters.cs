@@ -112,7 +112,7 @@ namespace Netsoft.Tools.Deps
                     _writer.WriteLine(string.Join(
                         ",\n",
                         _projects
-                        .Select(p => $"  {{ \"Name\": \"{p.Name}\", \"AssemblyName\": \"{p.AssemblyName}\", \"FilePathFromSolutionDir\": \"{GetFilePathFromSolution(p)}\" }}")));
+                        .Select((p,i) => $"  {{ \"Name\": \"{p.Name}\", \"Order\": {i}, \"AssemblyName\": \"{p.AssemblyName}\", \"FilePathFromSolutionDir\": \"{GetFilePathFromSolution(p)}\" }}")));
                     _writer.WriteLine("]");
                 }
 
