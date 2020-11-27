@@ -1,51 +1,12 @@
 # dotnet-deps
 
-dotnet-deps resolves dependency graph from a visual studio solution file and outputs it as dot format.
+dotnet-deps resolves a dependency graph from a given visual studio solution file and outputs topologically sorted projects as json.
 
-![deps](./docs/deps.png "dependency graph")
 ```
-$ dotnet-deps -s ./Docs.sln
-digraph G {
-    "Docs.Api"
-    "Docs.Interfaces"
-    "Docs.Client"
-    "Prism"
-    "Docs.Api" -> "Prism"
-    "System.ValueTuple"
-    "Docs.Api" -> "System.ValueTuple"
-    "System"
-    "Docs.Interfaces" -> "System"
-    "System.Core"
-    "Docs.Interfaces" -> "System.Core"
-    "System.Xml.Linq"
-    "Docs.Interfaces" -> "System.Xml.Linq"
-    "System.Data.DataSetExtensions"
-    "Docs.Interfaces" -> "System.Data.DataSetExtensions"
-    "Microsoft.CSharp"
-    "Docs.Interfaces" -> "Microsoft.CSharp"
-    "System.Data"
-    "Docs.Interfaces" -> "System.Data"
-    "System.Net.Http"
-    "Docs.Interfaces" -> "System.Net.Http"
-    "System.Xml"
-    "Docs.Interfaces" -> "System.Xml"
-    "System"
-    "Docs.Client" -> "System"
-    "System.Core"
-    "Docs.Client" -> "System.Core"
-    "System.Xml.Linq"
-    "Docs.Client" -> "System.Xml.Linq"
-    "System.Data.DataSetExtensions"
-    "Docs.Client" -> "System.Data.DataSetExtensions"
-    "Microsoft.CSharp"
-    "Docs.Client" -> "Microsoft.CSharp"
-    "System.Data"
-    "Docs.Client" -> "System.Data"
-    "System.Net.Http"
-    "Docs.Client" -> "System.Net.Http"
-    "System.Xml"
-    "Docs.Client" -> "System.Xml"
-    "Docs.Api" -> "Docs.Interfaces"
-    "Docs.Client" -> "Docs.Interfaces"
-}
+PS> dotnet-deps -s .\Docs.sln | ConvertFrom-Json
+Name            Order AssemblyName    FilePathFromSolutionDir                    
+----            ----- ------------    -----------------------                    
+Docs.Interfaces     0 Docs.Interfaces docs\Docs.Interfaces\Docs.Interfaces.csproj
+Docs.Api            1 Docs.Api        docs\Docs.Api\Docs.Api.csproj              
+Docs.Client         2 Docs.Client     docs\Docs.Client\Docs.Client.csproj        
 ```

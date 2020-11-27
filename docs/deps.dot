@@ -1,7 +1,0 @@
-digraph G {
-    "Docs.Api"
-    "Docs.Interfaces"
-    "Docs.Client"
-    "Docs.Api" -> "Docs.Interfaces"
-    "Docs.Client" -> "Docs.Interfaces"
-}
