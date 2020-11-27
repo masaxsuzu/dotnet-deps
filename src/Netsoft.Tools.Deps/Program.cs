@@ -69,7 +69,7 @@ namespace Netsoft.Tools.Deps
         {
             var solution = await workspace.OpenSolutionAsync(solutionPath);
 
-            using (var progress = new DotReporter(Console.Out))
+            using (var progress = new JsonReporter(Console.Out))
             {
                 var walker = new SolutionWalker();
                 walker.Walk(solution, progress, progress);
