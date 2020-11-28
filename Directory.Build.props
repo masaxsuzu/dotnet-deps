@@ -6,6 +6,7 @@
     <PathMap>$(RepoRoot)=.</PathMap>
     <Product>dotnet-deps</Product>
     <Authors>masaxsuzu</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/masaxsuzu/dotnet-deps</RepositoryUrl>
   </PropertyGroup>
   
